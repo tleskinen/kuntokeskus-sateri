@@ -24,7 +24,9 @@ $liity_url = ( $p = get_page_by_path( 'liity' ) ) ? get_permalink( $p ) : home_u
 	<!-- Brand-navbar (tumma yläbanderolli) -->
 	<header class="sp-home-navbar" role="banner">
 		<div class="sp-home-navbar-inner">
-			<a class="sp-home-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">bööna</a>
+			<a class="sp-home-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="bööna">
+				<img src="<?php echo esc_url( SATERINPORTTI_OSTOPOLKU_URL . 'assets/brand/Boona/' ); ?>bööna-logo.svg" alt="bööna" loading="eager">
+			</a>
 			<nav class="sp-home-nav" aria-label="Päävalikko">
 				<a href="#kuntosali">Kuntosali</a>
 				<a href="#palvelut">Palvelut</a>
@@ -195,7 +197,9 @@ $liity_url = ( $p = get_page_by_path( 'liity' ) ) ? get_permalink( $p ) : home_u
 					</ul>
 				</div>
 			</div>
-			<div class="sp-home-footer-wordmark">bööna</div>
+			<div class="sp-home-footer-wordmark" aria-hidden="true">
+				<img src="<?php echo esc_url( SATERINPORTTI_OSTOPOLKU_URL . 'assets/brand/Boona/' ); ?>bööna-logo.svg" alt="">
+			</div>
 		</div>
 	</footer>
 

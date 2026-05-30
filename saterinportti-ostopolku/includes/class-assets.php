@@ -23,10 +23,24 @@ final class Assets {
 			return;
 		}
 
+		/**
+		 * Bööna-brändi käyttää Figmasta löytyviä fontteja:
+		 * - Google Sans Flex (otsikot, body, CTA-napit)
+		 * - Inter (footerin sisältö)
+		 * Säterinportti-brändi perii edelleen teemasta — fontit ladataan
+		 * mutta käytetään vain `body.brand-boona`-tilassa CSS:n kautta.
+		 */
+		wp_enqueue_style(
+			'saterinportti-ostopolku-fonts',
+			'https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@7..72,400..700&family=Inter:wght@400;700&display=swap',
+			[],
+			null
+		);
+
 		wp_enqueue_style(
 			'saterinportti-ostopolku-liity',
 			SATERINPORTTI_OSTOPOLKU_URL . 'assets/css/liity.css',
-			[],
+			[ 'saterinportti-ostopolku-fonts' ],
 			SATERINPORTTI_OSTOPOLKU_VERSION
 		);
 
