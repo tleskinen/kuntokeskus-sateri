@@ -1457,6 +1457,12 @@ body.brand-boona .sp-home-btn--dark { color: var(--sp-cta-bg); }
 	color: var(--sp-text);
 }
 .sp-home-marquee p { margin: 0; max-width: 1280px; margin-left: auto; margin-right: auto; }
+.sp-home-marquee--dark,
+.sp-home-marquee--cream {
+	/* Erilliset banderollit haluavat hengitystä ympärilleen — Figmassa 88 px
+	 * valkoista yläpuolella ja alapuolella ennen ja jälkeen banderollin. */
+	margin: 88px 0;
+}
 .sp-home-marquee--dark {
 	background: var(--sp-accent);
 	color: #fff;
@@ -1612,8 +1618,8 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 }
 .sp-home-feature p,
 .sp-home-feature ol {
-	font-size: 1.25em;
-	line-height: 1.45;
+	font-size: 0.875em;
+	line-height: 1.5;
 	margin: 0 0 1.75rem;
 	color: var(--sp-text);
 }
