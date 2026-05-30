@@ -1348,8 +1348,12 @@ body.brand-boona .sp-home-footer * {
 
 /* --- Brand-navbar (tumma yläbanderolli) --- */
 .sp-home-navbar {
+	position: sticky;
+	top: 0;
+	z-index: 100;
 	background: var(--sp-accent);
 	color: #fff;
+	box-shadow: 0 1px 0 rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.06);
 }
 body.brand-boona .sp-home-navbar { color: var(--sp-cta-bg); }
 .sp-home-navbar-inner {
