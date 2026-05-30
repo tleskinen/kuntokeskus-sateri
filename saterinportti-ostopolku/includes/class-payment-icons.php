@@ -72,7 +72,7 @@ final class Payment_Icons {
 				return '<svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Smartum"><text x="50" y="22" text-anchor="middle" font-family="-apple-system,system-ui,Arial,sans-serif" font-weight="700" font-size="17" fill="#0a0a0a">smartum</text></svg>';
 
 			case 'edenred':
-				return '<svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Edenred"><circle cx="50" cy="15" r="13" fill="#ed1c24"/><text x="50" y="18.5" text-anchor="middle" font-family="-apple-system,system-ui,Arial,sans-serif" font-weight="700" font-style="italic" font-size="8" fill="#fff">Edenred</text></svg>';
+				return '<svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Edenred" preserveAspectRatio="xMidYMid meet"><rect x="22" y="2" width="56" height="26" rx="13" fill="#ed1c24"/><text x="50" y="20" text-anchor="middle" font-family="-apple-system,system-ui,Arial,sans-serif" font-weight="800" font-style="italic" font-size="13" fill="#fff" letter-spacing="-.3">Edenred</text></svg>';
 		}
 
 		return '';
