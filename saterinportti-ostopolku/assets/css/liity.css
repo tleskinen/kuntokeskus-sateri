@@ -1525,8 +1525,8 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 .sp-home-intro p {
 	max-width: 1220px;
 	margin: 0 auto;
-	font-size: clamp(1.25em, 1vw + 0.875em, 1.625em);
-	line-height: 1.35;
+	font-size: clamp(1.125em, 1vw + 0.75em, 1.375em);
+	line-height: 1.4;
 	font-weight: 700;
 	color: var(--sp-text);
 }
