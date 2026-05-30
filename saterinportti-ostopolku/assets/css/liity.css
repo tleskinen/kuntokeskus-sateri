@@ -1,0 +1,1234 @@
+/*
+ * Säterinportti — Ostopolun tyylit
+ *
+ * Petrol-paletti, scope-valinta + commitment-kortit, tarjous-mekaniikka,
+ * tuntivalikoima-modaali, rekisteröinti / maksu / vahvistus -sivupohjat.
+ *
+ * Kaikki värit muuttujina — voit overrideta teema-CSS:ssä:
+ *   :root { --sp-accent: #xxx; }
+ */
+:root {
+	--sp-max: 1120px;
+	--sp-text: #1d1d1b;
+	--sp-muted: #5f5f5d;
+	--sp-soft: #9a9a97;
+	--sp-bg: transparent;
+	--sp-card-bg: #ffffff;
+	--sp-card-soft: #f6f4ef;
+	--sp-border: #e5e3dd;
+	--sp-accent: #1f5862;
+	--sp-accent-dark: #103e47;
+	--sp-accent-soft: #e8f0f1;
+	--sp-accent-pill-bg: #c5dde0;
+	--sp-accent-pill-ink: #103e47;
+	--sp-neutral-pill-bg: #f0eee9;
+	--sp-neutral-pill-ink: #4f4f4d;
+	--sp-error: #b3261e;
+	--sp-error-soft: #fcebe8;
+	--sp-shadow: 0 1px 2px rgba(0,0,0,.03), 0 8px 24px rgba(0,0,0,.05);
+	--sp-shadow-strong: 0 2px 4px rgba(0,0,0,.04), 0 14px 36px rgba(0,0,0,.1);
+}
+
+/* === Yhteinen kontti === */
+.sp-liity { background: var(--sp-bg); color: var(--sp-text); line-height: 1.55; }
+.sp-container { max-width: var(--sp-max); margin: 0 auto; padding: 0 1.25rem; }
+
+/* === Otsikko + lede === */
+.sp-page-head { padding: 3rem 0 1.5rem; text-align: center; }
+.sp-page-title {
+	font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem);
+	font-weight: 700;
+	margin: 0 0 .5rem;
+	letter-spacing: -.01em;
+}
+.sp-page-lede { color: var(--sp-muted); font-size: 1.0625rem; margin: 0 auto; max-width: 60ch; }
+
+/* === Scope-valinta (radio-tyyli) === */
+.sp-scope-row {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: .75rem;
+	max-width: 720px;
+	margin: 0 auto 2rem;
+}
+@media (min-width: 640px) { .sp-scope-row { grid-template-columns: 1fr 1fr; } }
+
+.sp-scope-option {
+	position: relative;
+	background: var(--sp-card-bg);
+	border: 2px solid var(--sp-border);
+	border-radius: 14px;
+	padding: 1rem 1.25rem;
+	cursor: pointer;
+	transition: border-color .15s ease, background .15s ease;
+	display: flex; justify-content: space-between; align-items: flex-start;
+	gap: 1rem;
+}
+.sp-scope-option:hover { border-color: #c5c2ba; }
+.sp-scope-option.is-selected { border-color: var(--sp-accent); background: var(--sp-accent-soft); }
+
+.sp-scope-text h3 {
+	margin: 0 0 .15rem; font-size: 1rem; font-weight: 700;
+	display: flex; flex-wrap: wrap; align-items: center; gap: .35rem;
+}
+.sp-scope-text p { margin: 0; color: var(--sp-muted); font-size: .9rem; }
+
+.sp-scope-radio {
+	flex-shrink: 0;
+	width: 1.5rem; height: 1.5rem; border-radius: 50%;
+	border: 2px solid #c5c2ba; background: #fff;
+	display: inline-flex; align-items: center; justify-content: center;
+}
+.sp-scope-option.is-selected .sp-scope-radio {
+	border-color: var(--sp-accent); background: var(--sp-accent); color: #fff;
+}
+.sp-scope-option.is-selected .sp-scope-radio::before {
+	content: "✓"; font-size: .85rem; font-weight: 700;
+}
+
+/* Info-ikoni "jumpat"-sanan vieressä */
+.sp-jumpat-link { display: inline-flex; align-items: center; gap: .35rem; }
+.sp-info-icon {
+	appearance: none;
+	background: transparent;
+	border: 1.5px solid var(--sp-accent);
+	color: var(--sp-accent);
+	width: 1.25rem; height: 1.25rem; min-width: 1.25rem;
+	border-radius: 50%;
+	font-size: .75rem; font-weight: 700; line-height: 1;
+	cursor: pointer; padding: 0;
+	font-family: Georgia, "Times New Roman", serif;
+	font-style: italic;
+	display: inline-flex; align-items: center; justify-content: center;
+	transition: background .15s, color .15s, transform .08s;
+}
+.sp-info-icon:hover { background: var(--sp-accent); color: #fff; transform: scale(1.1); }
+.sp-info-icon:focus-visible { outline: 0; box-shadow: 0 0 0 3px var(--sp-accent-soft); }
+
+.sp-divider { max-width: 1020px; margin: 2rem auto; border-top: 1px solid var(--sp-border); }
+
+/* === Commitment-kortit === */
+.sp-cards {
+	display: grid; grid-template-columns: 1fr; gap: 1rem;
+	max-width: 1020px; margin: 0 auto 3rem;
+	align-items: start;
+}
+@media (min-width: 780px) { .sp-cards { grid-template-columns: repeat(3, 1fr); } }
+
+.sp-card {
+	position: relative;
+	background: var(--sp-card-bg);
+	border: 2px solid var(--sp-border);
+	border-radius: 16px;
+	padding: 1.5rem 1.5rem 1.75rem;
+	cursor: pointer;
+	transition: border-color .15s, background .15s;
+	display: flex; flex-direction: column; gap: 1rem;
+}
+.sp-card:hover { border-color: #c5c2ba; }
+.sp-card.is-selected { border-color: var(--sp-accent); background: var(--sp-accent-soft); }
+
+.sp-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.sp-card-header h2 { margin: 0 0 .15rem; font-size: 1.125rem; font-weight: 700; }
+.sp-card-subtitle { margin: 0; color: var(--sp-muted); font-size: .9rem; line-height: 1.35; }
+.sp-card-radio {
+	flex-shrink: 0;
+	width: 1.5rem; height: 1.5rem; border-radius: 50%;
+	border: 2px solid #c5c2ba; background: #fff;
+	display: inline-flex; align-items: center; justify-content: center;
+}
+.sp-card.is-selected .sp-card-radio {
+	border-color: var(--sp-accent); background: var(--sp-accent); color: #fff;
+}
+.sp-card.is-selected .sp-card-radio::before { content: "✓"; font-size: .85rem; font-weight: 700; }
+
+/* Hinta */
+.sp-card-price {
+	display: flex; align-items: baseline; flex-wrap: wrap;
+	gap: .3rem .5rem;
+	font-size: 1.6rem; font-weight: 700;
+	color: var(--sp-accent);
+	letter-spacing: -.01em; line-height: 1.2;
+	margin: 0;
+}
+.sp-card-price-was {
+	text-decoration: line-through; color: var(--sp-soft);
+	font-weight: 500; letter-spacing: 0;
+}
+.sp-card-price-sub {
+	margin: .25rem 0 0;
+	font-size: .85rem; color: var(--sp-muted);
+	min-height: 1.3em;
+}
+.sp-tarjous-star { color: var(--sp-accent); font-weight: 700; margin-left: .1rem; font-size: .75em; vertical-align: super; line-height: 0; }
+
+/* Pillit */
+.sp-card-pills { display: flex; gap: .4rem; flex-wrap: wrap; }
+.sp-pill {
+	display: inline-flex; align-items: center;
+	padding: .25rem .55rem; border-radius: 6px;
+	font-size: .78rem; font-weight: 700;
+}
+.sp-pill-accent { background: var(--sp-accent-pill-bg); color: var(--sp-accent-pill-ink); }
+.sp-pill-neutral { background: var(--sp-neutral-pill-bg); color: var(--sp-neutral-pill-ink); }
+
+.sp-card-divider { margin: 0; border: 0; border-top: 1px solid var(--sp-border); }
+
+.sp-card-features { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .55rem; }
+.sp-card-features li { display: flex; align-items: flex-start; gap: .55rem; font-size: .9375rem; line-height: 1.4; }
+.sp-card-features .sp-check {
+	flex-shrink: 0; width: 1.15rem; height: 1.15rem; margin-top: .15em;
+	background: var(--sp-accent); color: #fff;
+	border-radius: 50%;
+	display: inline-flex; align-items: center; justify-content: center;
+	font-size: .7rem; font-weight: 700;
+}
+
+/* === CTA === */
+.sp-cta-wrap {
+	max-width: 1020px; margin: 0 auto 3rem;
+	text-align: center; padding: 0 1.25rem;
+}
+.sp-cta {
+	display: inline-flex; align-items: center; justify-content: center;
+	background: var(--sp-accent); color: #fff;
+	text-decoration: none;
+	padding: 1rem 2rem; border-radius: 10px;
+	font-weight: 700; font-size: 1rem; gap: .5rem;
+	border: 0; cursor: pointer;
+}
+.sp-cta:hover { background: var(--sp-accent-dark); color: #fff; }
+
+/* CTA:n alle "trust-strip" — yhtenäinen sävy ja hierarkia.
+ * Rivi 1: maksuvaihtoehdot oikeilla logoilla (visuaalinen luottamus)
+ * Rivi 2: alennus selkeällä pillillä (yksi promo-painopiste)
+ * Rivi 3: tarjousehto-alaviite pienenä fine-print -tyylillä */
+.sp-cta-trust {
+	margin: 1.5rem auto 0;
+	max-width: 62ch;
+}
+.sp-cta-trust-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: .5rem .75rem;
+	margin: 0 0 .85rem;
+	font-size: .9rem;
+	color: var(--sp-muted);
+	line-height: 1.5;
+}
+.sp-cta-trust-row:last-of-type { margin-bottom: 0; }
+
+.sp-cta-trust-row strong {
+	color: var(--sp-text);
+	font-weight: 700;
+}
+
+.sp-cta-trust-footnote {
+	margin: 1rem auto 0;
+	max-width: 56ch;
+	padding-top: .85rem;
+	border-top: 1px solid var(--sp-border);
+	font-size: .8125rem;
+	color: var(--sp-soft);
+	line-height: 1.5;
+	text-align: center;
+}
+.sp-cta-trust-footnote .sp-tarjous-star {
+	color: var(--sp-accent);
+	font-weight: 700;
+	margin-right: .15rem;
+}
+
+/* === Ryhmäliikunta-teaser + modaali === */
+.sp-classes-teaser {
+	max-width: 1020px; margin: 0 auto 4rem;
+	padding: 0 1.25rem;
+}
+.sp-classes-teaser-inner {
+	background: var(--sp-card-soft);
+	border-radius: 14px;
+	padding: 1.25rem 1.5rem;
+	display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;
+}
+@media (min-width: 640px) {
+	.sp-classes-teaser-inner {
+		flex-direction: row; align-items: center; justify-content: space-between;
+		padding: 1.25rem 1.75rem;
+	}
+}
+.sp-classes-eyebrow {
+	display: inline-block;
+	font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+	text-transform: uppercase; color: var(--sp-accent); margin-bottom: .25rem;
+}
+.sp-classes-teaser-title {
+	margin: 0; font-size: 1.0625rem; font-weight: 700;
+	letter-spacing: -.005em; line-height: 1.3;
+}
+.sp-classes-open {
+	appearance: none; background: transparent;
+	border: 0; padding: 0; cursor: pointer;
+	font: inherit; font-size: .875rem; font-weight: 600;
+	color: var(--sp-accent);
+	flex-shrink: 0;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-thickness: 1.5px;
+	text-decoration-color: rgba(31, 88, 98, .3);
+	transition: text-decoration-color .15s, color .15s;
+}
+.sp-classes-open:hover {
+	color: var(--sp-accent-dark);
+	text-decoration-color: var(--sp-accent);
+}
+
+.sp-classes-modal {
+	position: fixed; inset: 0; margin: auto;
+	border: 0; padding: 2rem;
+	max-width: 680px; width: calc(100% - 2rem); max-height: calc(100vh - 2rem);
+	border-radius: 16px; background: #fff;
+	box-shadow: 0 20px 60px rgba(0,0,0,.2);
+	overflow: auto;
+}
+.sp-classes-modal::backdrop { background: rgba(20,20,20,.5); backdrop-filter: blur(2px); }
+.sp-classes-modal-close {
+	position: absolute; top: .9rem; right: 1rem;
+	appearance: none; background: transparent; border: 0;
+	font-size: 1.25rem; line-height: 1;
+	width: 2rem; height: 2rem; border-radius: 50%;
+	color: var(--sp-muted); cursor: pointer;
+	display: inline-flex; align-items: center; justify-content: center;
+}
+.sp-classes-modal-close:hover { background: var(--sp-card-soft); color: var(--sp-text); }
+.sp-classes-title {
+	margin: 0 0 .5rem;
+	font-size: clamp(1.5rem, 2vw + .5rem, 1.75rem);
+	font-weight: 700; letter-spacing: -.01em; line-height: 1.15;
+}
+.sp-classes-lede {
+	margin: 0 0 1.5rem; color: var(--sp-muted);
+	font-size: .9375rem; line-height: 1.55;
+}
+.sp-classes-grid { display: flex; flex-wrap: wrap; gap: .5rem; }
+.sp-class-tag {
+	display: inline-flex; align-items: center;
+	padding: .45rem .8rem;
+	background: #fff; border: 1px solid var(--sp-border);
+	border-radius: 999px;
+	font-size: .875rem; color: var(--sp-text); font-weight: 500;
+}
+.sp-class-tag--hero {
+	background: var(--sp-accent); color: #fff; border-color: var(--sp-accent);
+	font-weight: 700; letter-spacing: .02em;
+}
+.sp-classes-footer { margin: 1.5rem 0 0; font-size: .9375rem; }
+.sp-classes-footer a { color: var(--sp-accent); text-decoration: none; font-weight: 600; }
+.sp-classes-footer a:hover { text-decoration: underline; }
+
+/* === Näin liityt === */
+.sp-steps-section { margin: 0 auto 4rem; max-width: 1020px; padding: 0 1.25rem; }
+.sp-section-title {
+	text-align: center; margin: 0 0 2rem;
+	font-size: clamp(1.5rem, 2vw + .5rem, 2rem); font-weight: 700;
+}
+.sp-steps-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 640px) { .sp-steps-grid { grid-template-columns: repeat(3, 1fr); } }
+.sp-step {
+	background: var(--sp-card-bg); border: 1px solid var(--sp-border);
+	border-radius: 12px; padding: 1.5rem;
+}
+.sp-step-num {
+	display: inline-flex; align-items: center; justify-content: center;
+	width: 2rem; height: 2rem; border-radius: 50%;
+	background: var(--sp-accent); color: #fff;
+	font-weight: 700; font-size: .95rem;
+	margin-bottom: .85rem;
+}
+.sp-step h3 { margin: 0 0 .35rem; font-size: 1rem; font-weight: 700; }
+.sp-step p { margin: 0; color: var(--sp-muted); font-size: .9375rem; line-height: 1.5; }
+
+/* === FAQ === */
+.sp-faq-section { margin: 0 auto 5rem; max-width: 760px; padding: 0 1.25rem; }
+.sp-faq-list { border-top: 1px solid var(--sp-border); }
+.sp-faq-item { border-bottom: 1px solid var(--sp-border); }
+.sp-faq-item > summary {
+	list-style: none; cursor: pointer; padding: .9rem 0;
+	font-weight: 600; font-size: .9375rem;
+	display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.sp-faq-item > summary::-webkit-details-marker { display: none; }
+.sp-faq-item > summary::after {
+	content: "+"; font-size: 1.15rem; font-weight: 400;
+	color: var(--sp-muted); line-height: 1; flex-shrink: 0;
+}
+.sp-faq-item[open] > summary::after { content: "–"; }
+.sp-faq-item > summary:hover { color: var(--sp-accent); }
+.sp-faq-answer {
+	padding: 0 0 1rem;
+	font-size: .875rem;
+	color: var(--sp-muted);
+	line-height: 1.55;
+	max-width: 60ch;
+}
+.sp-faq-contact { text-align: center; color: var(--sp-muted); margin: 1.5rem 0 0; font-size: .875rem; }
+.sp-faq-contact a { color: inherit; text-decoration: underline; }
+
+/* === Vaihe-indikaattori (rekisteröinti / maksu / vahvistus) === */
+.sp-back-link {
+	display: inline-flex; align-items: center; gap: .35rem;
+	text-decoration: none; color: var(--sp-muted); font-size: .9375rem;
+	margin-bottom: 1rem;
+}
+.sp-back-link:hover { color: var(--sp-accent); }
+
+.sp-steps {
+	display: flex; align-items: center; gap: .75rem;
+	font-size: .875rem; margin-bottom: 1rem;
+}
+
+/* Vaiheindikaattorin pillit — molemmat samankokoisia ja samalla fontilla.
+ * Erot tilojen välillä tehdään väreillä, ei mitoilla, jotta pillit
+ * näyttävät selkeästi vertailtavilta vaiheilta. */
+.sp-step-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: .5rem;
+	padding: .35rem .85rem .35rem .35rem;
+	border-radius: 999px;
+	font-weight: 600;
+	line-height: 1;
+	border: 1.5px solid transparent;
+	transition: background .15s, border-color .15s, color .15s;
+}
+.sp-step-pill .num {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 50%;
+	font-size: .75rem;
+	font-weight: 700;
+	line-height: 1;
+	flex-shrink: 0;
+}
+
+/* Aktiivinen — käynnissä oleva vaihe */
+.sp-step-pill.is-active {
+	background: var(--sp-accent);
+	color: #fff;
+	border-color: var(--sp-accent);
+}
+.sp-step-pill.is-active .num {
+	background: #fff;
+	color: var(--sp-accent-dark);
+}
+
+/* Tuleva — vielä edessä */
+.sp-step-pill.is-pending {
+	background: transparent;
+	color: var(--sp-muted);
+	border-color: var(--sp-border);
+}
+.sp-step-pill.is-pending .num {
+	background: transparent;
+	color: var(--sp-soft);
+	border: 1.5px solid var(--sp-border);
+}
+
+/* Valmis — käyttäjä on jo läpäissyt tämän vaiheen */
+.sp-step-pill.is-done {
+	background: var(--sp-accent-soft);
+	color: var(--sp-accent-pill-ink);
+	border-color: var(--sp-accent-soft);
+}
+.sp-step-pill.is-done .num {
+	background: var(--sp-accent);
+	color: #fff;
+}
+
+.sp-step-divider {
+	flex: 0 0 auto;
+	width: 2rem;
+	height: 1.5px;
+	background: var(--sp-border);
+	border-radius: 1px;
+}
+
+/* === Layout: kahden sarakkeen (rekisteröinti + maksu) === */
+.sp-layout {
+	display: grid; grid-template-columns: 1fr; gap: 2rem;
+	max-width: var(--sp-max); margin: 0 auto; padding: 0 1.25rem 4rem;
+}
+@media (min-width: 880px) {
+	.sp-layout { grid-template-columns: 1.4fr .9fr; gap: 2.5rem; align-items: start; }
+}
+.sp-layout-main { display: flex; flex-direction: column; gap: 2rem; }
+
+.sp-section-card {
+	background: #fff; border: 1px solid var(--sp-border);
+	border-radius: 14px; padding: 1.75rem;
+}
+.sp-section-card-head { margin-bottom: 1rem; }
+.sp-section-card h2 { margin: 0 0 1.25rem; font-size: 1.125rem; font-weight: 700; }
+.sp-section-card-lede { margin: .25rem 0 0; color: var(--sp-muted); font-size: .9rem; }
+
+/* === Kirjautumisvalinta === */
+.sp-login-choice-row { display: grid; grid-template-columns: 1fr; gap: .75rem; }
+@media (min-width: 540px) { .sp-login-choice-row { grid-template-columns: 1fr 1fr; } }
+.sp-login-option {
+	appearance: none; background: #fff;
+	border: 2px solid var(--sp-border); border-radius: 12px;
+	padding: 1rem; text-align: left; font: inherit; cursor: pointer;
+	transition: border-color .15s, background .15s;
+	display: flex; flex-direction: column; gap: .25rem;
+}
+.sp-login-option:hover { border-color: var(--sp-soft); }
+.sp-login-option.is-active { border-color: var(--sp-accent); background: var(--sp-accent-soft); }
+.sp-login-option-title { font-weight: 700; font-size: .9375rem; }
+.sp-login-option-meta { font-size: .85rem; color: var(--sp-muted); }
+
+.sp-login-form { display: none; margin-top: 1rem; }
+.sp-login-form.is-open { display: flex; flex-direction: column; gap: .75rem; }
+.sp-login-form a { color: var(--sp-accent); text-decoration: none; font-size: .875rem; }
+.sp-login-form a:hover { text-decoration: underline; }
+
+/* Kirjautumisformin alarivi: "Pidä minut kirjautuneena" + "Unohdin salasanan" */
+.sp-login-actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: .75rem;
+	margin-top: .25rem;
+}
+.sp-login-remember {
+	display: inline-flex;
+	align-items: center;
+	gap: .5rem;
+	font-size: .875rem;
+	color: var(--sp-text);
+	cursor: pointer;
+	user-select: none;
+}
+.sp-login-remember input[type="checkbox"] {
+	width: 1rem;
+	height: 1rem;
+	margin: 0;
+	accent-color: var(--sp-accent);
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
+/* === Lomake-kentät === */
+.sp-form-grid { display: grid; grid-template-columns: 1fr; gap: .85rem; }
+@media (min-width: 540px) { .sp-form-grid { grid-template-columns: 1fr 1fr; } }
+.sp-form-field { display: flex; flex-direction: column; gap: .35rem; }
+.sp-form-field--full { grid-column: 1 / -1; }
+.sp-form-field label { font-size: .8rem; font-weight: 600; color: var(--sp-text); }
+.sp-form-field label .opt { font-weight: 400; color: var(--sp-soft); }
+.sp-form-field input {
+	appearance: none; font: inherit; font-size: .95rem;
+	height: 2.85rem;
+	padding: 0 .85rem;
+	box-sizing: border-box;
+	border: 1.5px solid var(--sp-border); border-radius: 8px;
+	background: #fff; color: var(--sp-text);
+	transition: border-color .15s, box-shadow .15s;
+}
+.sp-form-field input:focus {
+	outline: 0; border-color: var(--sp-accent);
+	box-shadow: 0 0 0 3px var(--sp-accent-soft);
+}
+.sp-form-help { margin: .75rem 0 0; font-size: .8125rem; color: var(--sp-muted); line-height: 1.5; }
+
+/* === Validointi: virheviestit kentän alla === */
+.sp-form-error {
+	margin: .4rem 0 0;
+	padding: 0;
+	font-size: .8125rem;
+	color: var(--sp-error);
+	line-height: 1.4;
+	display: flex;
+	align-items: flex-start;
+	gap: .35rem;
+}
+.sp-form-error::before {
+	content: "⚠";
+	flex-shrink: 0;
+	font-size: .9rem;
+	line-height: 1.2;
+}
+.sp-form-error[hidden] { display: none; }
+
+/* Virheellinen input: punainen border + soft focus-ring */
+.sp-form-field input[aria-invalid="true"],
+.sp-input-wrap input[aria-invalid="true"] {
+	border-color: var(--sp-error);
+}
+.sp-form-field input[aria-invalid="true"]:focus,
+.sp-input-wrap input[aria-invalid="true"]:focus {
+	box-shadow: 0 0 0 3px var(--sp-error-soft);
+}
+
+/* Virheellinen radio-rivi: pilkien border punaiseksi */
+.sp-radio-row[aria-invalid="true"] .sp-radio-pill {
+	border-color: var(--sp-error);
+}
+
+/* Virheellinen käyttöehdot-checkbox: koko rivi punaiseksi */
+.sp-checkbox-row:has(input[aria-invalid="true"]) {
+	border-color: var(--sp-error);
+	background: var(--sp-error-soft);
+}
+
+/* Lomakkeen alkulause */
+.sp-form-intro {
+	margin: 0 0 1.5rem;
+	font-size: .9rem;
+	color: var(--sp-muted);
+	line-height: 1.55;
+}
+
+/* Sektio-ryhmittely — numeroidut alaosastot saman kortin sisällä.
+ * Selkeämpi kuin pelkkä iso lomake, kevyempi kuin erilliset kortit. */
+.sp-form-section {
+	margin-top: 1.75rem;
+	padding-top: 1.75rem;
+	border-top: 1px solid var(--sp-border);
+}
+.sp-form-section:first-of-type {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: 0;
+}
+
+.sp-form-subhead {
+	margin: 0 0 1rem;
+	font-size: 1.0625rem;
+	font-weight: 700;
+	color: var(--sp-text);
+	display: flex;
+	align-items: center;
+	gap: .65rem;
+	letter-spacing: -.005em;
+}
+.sp-form-section-num {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.6rem;
+	height: 1.6rem;
+	flex-shrink: 0;
+	border-radius: 50%;
+	background: var(--sp-accent-soft);
+	color: var(--sp-accent-dark);
+	font-size: .8125rem;
+	font-weight: 700;
+}
+/* Alert-tila (esim. huoltajan kentät alaikäiselle) — kullankellertävä huomio,
+ * ei pelottelevaa punaista, mutta selvästi erottuva normaaleista numeroista. */
+.sp-form-section-num--alert {
+	background: #fff4d5;
+	color: #8a6500;
+}
+
+/* Huoltajan laskutustiedot — alaikäiselle näytettävä ehdollinen osio.
+ * Kevyt taustasävytys + reunaviiva erottaa muista sektioista, mutta
+ * pysyy numeroitujen sektioiden rinnalla samassa typografiassa. */
+.sp-form-section--guardian {
+	background: #fffaeb;
+	border-left: 3px solid #e9c46a;
+	border-top: 0;
+	border-radius: 0 8px 8px 0;
+	margin-top: 1.75rem;
+	padding: 1.25rem 1.25rem 1.5rem;
+}
+.sp-form-section--guardian + .sp-form-footer { margin-top: 1.75rem; }
+.sp-form-section--guardian .sp-form-intro {
+	margin-bottom: 1rem;
+	color: #6b4f00;
+}
+.sp-form-section-hint {
+	margin-left: auto;
+	font-size: .8125rem;
+	font-weight: 500;
+	color: var(--sp-muted);
+}
+
+.sp-form-label {
+	display: inline-flex;
+	align-items: center;
+	gap: .45rem;
+	font-size: .8rem;
+	font-weight: 600;
+	color: var(--sp-text);
+}
+.sp-form-label .sp-info-icon {
+	/* Pieni, hillitty harmaa ikoni labelin vieressä — ei kilpaile sisällön kanssa */
+	width: .9rem; height: .9rem; min-width: .9rem;
+	font-size: .6rem;
+	border-width: 1px;
+	border-color: var(--sp-soft);
+	color: var(--sp-soft);
+	transition: border-color .15s, color .15s;
+}
+.sp-form-label .sp-info-icon:hover,
+.sp-form-label .sp-info-icon:focus-visible {
+	border-color: var(--sp-muted);
+	color: var(--sp-muted);
+	outline: 0;
+}
+/* Avoinna oleva ikoni ei muuta tyyliä — hint-laatikon näkyminen on jo riittävä palaute */
+
+/* Inline-info-hint — selitys joka aukeaa info-ikonin alta */
+.sp-info-hint {
+	position: relative;
+	margin-top: .65rem;
+	padding: .8rem 2.5rem .8rem 1rem;
+	background: var(--sp-accent-soft);
+	border-left: 3px solid var(--sp-accent);
+	border-radius: 8px;
+	font-size: .85rem;
+	color: var(--sp-accent-dark);
+	line-height: 1.55;
+}
+.sp-info-hint strong {
+	display: block;
+	margin-bottom: .25rem;
+	color: var(--sp-accent-dark);
+	font-weight: 700;
+}
+.sp-info-hint[hidden] { display: none; }
+
+/* X-sulkemis-nappi info-hintissä — käyttäjä näkee miten laatikon saa kiinni */
+.sp-info-hint-close {
+	position: absolute;
+	top: .35rem;
+	right: .4rem;
+	width: 1.6rem;
+	height: 1.6rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	border: 0;
+	border-radius: 50%;
+	color: var(--sp-accent-dark);
+	font-size: 1.05rem;
+	line-height: 1;
+	cursor: pointer;
+	opacity: .55;
+	transition: opacity .15s, background .15s;
+	padding: 0;
+}
+.sp-info-hint-close:hover,
+.sp-info-hint-close:focus-visible {
+	opacity: 1;
+	background: rgba(0, 0, 0, .06);
+	outline: 0;
+}
+
+/* Postinumero + kaupunki -rivi — molemmat puolet leveydestä, kuten etunimi/sukunimi */
+@media (min-width: 540px) {
+	.sp-form-field--postal { grid-column: span 1; }
+	.sp-form-field--city   { grid-column: span 1; }
+}
+
+/* Salasana-kenttä togglella — input + näytä/piilota-nappi */
+.sp-input-wrap {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+.sp-input-wrap input {
+	flex: 1 1 auto;
+	min-width: 0; /* sallii inputin kutistua flexbox-kontekstissa */
+	width: 100%;
+}
+.sp-input-wrap--password input { padding-right: 2.5rem; }
+
+.sp-password-toggle {
+	position: absolute;
+	right: .5rem;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 1.75rem;
+	height: 1.75rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	border: 0;
+	border-radius: 5px;
+	color: var(--sp-soft);
+	cursor: pointer;
+	padding: 0;
+	transition: color .15s;
+}
+.sp-password-toggle:hover,
+.sp-password-toggle:focus-visible {
+	color: var(--sp-accent-dark);
+	outline: 0;
+}
+.sp-pw-icon { width: 1.1rem; height: 1.1rem; display: none; }
+.sp-pw-icon--show { display: inline-flex; }
+.sp-password-toggle[aria-pressed="true"] .sp-pw-icon--show { display: none; }
+.sp-password-toggle[aria-pressed="true"] .sp-pw-icon--hide { display: inline-flex; }
+
+/* Date-input — perii .sp-form-field input -säännön korkeuden;
+ * font-family inherit pakottaa saman fontin kuin tekstikentissä. */
+.sp-form-field input[type="date"] {
+	font-family: inherit;
+}
+.sp-form-field input[type="date"]::-webkit-calendar-picker-indicator {
+	cursor: pointer;
+	opacity: .55;
+}
+.sp-form-field input[type="date"]::-webkit-calendar-picker-indicator:hover {
+	opacity: 1;
+}
+
+/* Sukupuoli — pill-radio-row */
+.sp-radio-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	margin-top: .15rem;
+}
+.sp-radio-pill {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	padding: .55rem 1rem;
+	border: 1.5px solid var(--sp-border);
+	border-radius: 999px;
+	background: #fff;
+	font-size: .9rem;
+	font-weight: 600;
+	color: var(--sp-text);
+	cursor: pointer;
+	transition: border-color .15s, background .15s, color .15s;
+	user-select: none;
+}
+.sp-radio-pill:hover { border-color: var(--sp-soft); }
+.sp-radio-pill input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+.sp-radio-pill:has(input:checked) {
+	border-color: var(--sp-accent);
+	background: var(--sp-accent-soft);
+	color: var(--sp-accent-dark);
+}
+.sp-radio-pill:focus-within {
+	box-shadow: 0 0 0 3px var(--sp-accent-soft);
+}
+
+/* Laskutusosoite-checkbox — selkeä, tarpeeksi iso klikkialue */
+.sp-checkbox-row {
+	display: flex;
+	align-items: flex-start;
+	gap: .75rem;
+	padding: .9rem 1rem;
+	border: 1.5px solid var(--sp-border);
+	border-radius: 10px;
+	background: var(--sp-card-soft);
+	cursor: pointer;
+	transition: border-color .15s, background .15s;
+}
+.sp-checkbox-row:hover { border-color: var(--sp-soft); }
+.sp-checkbox-row:has(input:checked) {
+	border-color: var(--sp-accent);
+	background: var(--sp-accent-soft);
+}
+.sp-checkbox-row input[type="checkbox"] {
+	flex-shrink: 0;
+	width: 1.15rem;
+	height: 1.15rem;
+	margin-top: .15rem;
+	accent-color: var(--sp-accent);
+	cursor: pointer;
+}
+.sp-checkbox-row > span {
+	display: flex;
+	flex-direction: column;
+	gap: .15rem;
+	font-size: .9rem;
+}
+.sp-checkbox-row strong { font-weight: 600; color: var(--sp-text); }
+.sp-checkbox-meta {
+	font-size: .8125rem;
+	font-weight: 400;
+	color: var(--sp-muted);
+}
+
+/* Login-formin pieni vihjeteksti (esim. "et tiedä tunnuksiasi") */
+.sp-login-help {
+	margin: .85rem 0 0;
+	font-size: .8125rem;
+	color: var(--sp-muted);
+	line-height: 1.5;
+}
+.sp-login-help a {
+	color: var(--sp-accent);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+.sp-login-help a:hover { color: var(--sp-accent-dark); }
+
+/* Lomakkeen alaosa — käyttöehdot + markkinointi-disclaimer */
+.sp-form-footer {
+	margin-top: 1.75rem;
+	padding-top: 1.75rem;
+	border-top: 1px solid var(--sp-border);
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+.sp-form-disclaimer {
+	margin: 0;
+	font-size: .8125rem;
+	color: var(--sp-muted);
+	line-height: 1.55;
+}
+
+/* Käyttöehdot-checkbox — käytä neutraalia versiota (ei accent-soft taustaa) */
+.sp-checkbox-row--terms {
+	background: #fff;
+	border-color: var(--sp-border);
+}
+.sp-checkbox-row--terms:has(input:checked) {
+	background: var(--sp-accent-soft);
+	border-color: var(--sp-accent);
+}
+.sp-checkbox-row--terms a {
+	color: var(--sp-accent);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	font-weight: 500;
+}
+.sp-checkbox-row--terms a:hover { color: var(--sp-accent-dark); }
+
+.sp-continue-btn {
+	display: flex; align-items: center; justify-content: space-between;
+	width: 100%;
+	background: var(--sp-accent); color: #fff;
+	text-decoration: none;
+	padding: 1rem 1.5rem; border-radius: 12px;
+	font-weight: 700; font-size: 1rem;
+	font-family: inherit;
+	border: 0; cursor: pointer; gap: 1rem;
+}
+.sp-continue-btn:hover { background: var(--sp-accent-dark); color: #fff; }
+
+/* Form-rakenne /jatka-sivulla — sama flex-column gap-tila kuin layout-main:lla */
+#sp-jatka-form {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+/* === Tilauskooste (sticky summary) === */
+.sp-summary {
+	background: var(--sp-card-soft); border-radius: 14px; padding: 1.5rem;
+	position: sticky; top: 1rem;
+}
+.sp-summary-title {
+	margin: 0 0 1rem; font-size: 1rem; font-weight: 700;
+	letter-spacing: .04em; text-transform: uppercase; color: var(--sp-muted);
+}
+.sp-summary-product {
+	display: flex; flex-direction: column; gap: .35rem;
+	padding-bottom: 1rem; border-bottom: 1px solid var(--sp-border);
+}
+.sp-summary-name { font-size: 1.1rem; font-weight: 700; }
+.sp-summary-meta { font-size: .875rem; color: var(--sp-muted); }
+
+.sp-summary-rows {
+	display: flex; flex-direction: column;
+	padding: .75rem 0; gap: .65rem;
+	border-bottom: 1px solid var(--sp-border);
+}
+.sp-summary-row {
+	display: flex; justify-content: space-between; align-items: baseline;
+	gap: 1rem; font-size: .9375rem;
+}
+.sp-summary-row-meta { color: var(--sp-muted); font-size: .8rem; }
+.sp-summary-row-price {
+	display: inline-flex; align-items: baseline; gap: .35rem;
+	white-space: nowrap;
+}
+.sp-was { text-decoration: line-through; color: var(--sp-soft); font-size: .85rem; }
+.sp-now { font-weight: 700; }
+
+.sp-summary-total {
+	display: flex; justify-content: space-between; align-items: baseline;
+	gap: 1rem; padding-top: 1rem; font-size: 1rem;
+}
+.sp-summary-total-label { font-weight: 600; }
+.sp-summary-total-value { font-size: 1.5rem; font-weight: 800; color: var(--sp-accent); }
+
+.sp-summary-note {
+	margin: .75rem 0 0; font-size: .8rem; color: var(--sp-muted); line-height: 1.5;
+}
+.sp-summary-note .sp-tarjous-star { color: var(--sp-accent); font-weight: 700; }
+
+/* Yhteenvedon "Maksutapa: X — Vaihda" -rivi — antaa kontekstin Maksa-napille */
+.sp-summary-payment {
+	appearance: none;
+	width: 100%;
+	box-sizing: border-box;
+	margin-top: 1rem;
+	padding: .75rem .85rem;
+	background: #fff;
+	border: 1.5px solid var(--sp-border);
+	border-radius: 10px;
+	cursor: pointer;
+	font: inherit;
+	text-align: left;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: .25rem .75rem;
+	align-items: center;
+	transition: border-color .15s, background .15s;
+}
+.sp-summary-payment:hover { border-color: var(--sp-soft); }
+.sp-summary-payment-label {
+	grid-column: 1 / -1;
+	font-size: .75rem;
+	font-weight: 700;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+	color: var(--sp-muted);
+}
+.sp-summary-payment-value {
+	display: inline-flex;
+	align-items: center;
+	gap: .5rem;
+	min-width: 0;
+}
+.sp-summary-payment-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.5rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+}
+.sp-summary-payment-icon svg { max-width: 100%; max-height: 100%; height: 100%; width: auto; }
+.sp-summary-payment-icon:empty { display: none; }
+.sp-summary-payment-name {
+	font-size: .9375rem;
+	font-weight: 600;
+	color: var(--sp-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.sp-summary-payment-change {
+	font-size: .8125rem;
+	color: var(--sp-accent);
+	font-weight: 600;
+	flex-shrink: 0;
+}
+
+.sp-pay-btn {
+	display: flex; align-items: center; justify-content: center;
+	background: var(--sp-accent); color: #fff;
+	text-decoration: none;
+	padding: 1.1rem 1rem; border-radius: 12px;
+	font-weight: 700; font-size: 1.0625rem;
+	font-family: inherit;
+	border: 0; cursor: pointer; gap: .5rem;
+	width: 100%;
+	box-sizing: border-box;
+	margin-top: .65rem;
+}
+.sp-pay-btn:hover { background: var(--sp-accent-dark); color: #fff; }
+
+.sp-trust-line {
+	display: flex; flex-direction: column; gap: .35rem;
+	margin: 1rem 0 0; font-size: .8rem; color: var(--sp-muted);
+}
+.sp-trust-line-item { display: flex; align-items: center; gap: .5rem; }
+.sp-trust-line-item::before {
+	content: "✓"; color: var(--sp-accent); font-weight: 700;
+}
+
+/* === Upsell-kortit — kompakti rivi-tyyli, jotta maksutapa pysyy foldin yläpuolella === */
+.sp-upsells { display: flex; flex-direction: column; gap: .5rem; }
+.sp-upsell {
+	display: grid; grid-template-columns: 1fr auto;
+	gap: .85rem; align-items: center;
+	padding: .75rem .9rem;
+	border: 1.5px solid var(--sp-border); border-radius: 10px;
+	transition: border-color .15s, background .15s;
+}
+.sp-upsell.is-added { border-color: var(--sp-accent); background: var(--sp-accent-soft); }
+.sp-upsell-info { display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
+.sp-upsell-name { font-weight: 700; font-size: .9375rem; line-height: 1.25; }
+.sp-upsell-desc { font-size: .8125rem; color: var(--sp-muted); line-height: 1.35; }
+.sp-upsell-price-row { display: flex; gap: .4rem; align-items: baseline; margin-top: .15rem; }
+.sp-upsell-was { text-decoration: line-through; color: var(--sp-soft); font-size: .8125rem; }
+.sp-upsell-now { font-weight: 700; font-size: .9375rem; color: var(--sp-text); }
+.sp-upsell-add {
+	appearance: none; background: transparent;
+	border: 1.5px solid var(--sp-accent); color: var(--sp-accent);
+	font: inherit; font-weight: 600; font-size: .8125rem;
+	padding: .4rem .75rem; border-radius: 7px;
+	cursor: pointer; white-space: nowrap;
+	transition: background .15s, color .15s;
+}
+.sp-upsell-add:hover { background: var(--sp-accent); color: #fff; }
+.sp-upsell.is-added .sp-upsell-add { background: var(--sp-accent); color: #fff; }
+.sp-upsell.is-added .sp-upsell-add::before { content: "✓ "; }
+
+/* Lisäjäsen-upsell — laajenee lomakkeeksi kun lisätty */
+.sp-upsell-friend {
+	grid-template-columns: 1fr auto;
+	grid-template-areas:
+		"info button"
+		"form form";
+}
+.sp-upsell-friend > .sp-upsell-info  { grid-area: info; }
+.sp-upsell-friend > .sp-upsell-add   { grid-area: button; }
+.sp-friend-form {
+	grid-area: form;
+	margin-top: 1rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--sp-border);
+	display: flex; flex-direction: column; gap: .85rem;
+}
+.sp-upsell-friend.is-added .sp-friend-form { display: flex !important; }
+.sp-friend-form[hidden] { display: none !important; }
+.sp-friend-form-title {
+	margin: 0;
+	font-size: .9rem; font-weight: 700;
+	letter-spacing: .04em; text-transform: uppercase;
+	color: var(--sp-muted);
+}
+.sp-upsell-friend .sp-upsell-now {
+	display: flex; align-items: baseline; gap: .35rem;
+}
+.sp-upsell-friend .sp-upsell-discount-pill {
+	display: inline-flex; align-items: center;
+	background: var(--sp-accent-pill-bg); color: var(--sp-accent-pill-ink);
+	padding: .15rem .4rem; border-radius: 4px;
+	font-size: .72rem; font-weight: 700; letter-spacing: .04em;
+}
+
+/* === Maksutapa-valinta (ryhmitetty) === */
+.sp-payment-group { margin-bottom: 1.5rem; }
+.sp-payment-group:last-child { margin-bottom: 0; }
+.sp-payment-group-label {
+	margin: 0 0 .65rem;
+	font-size: .8rem; font-weight: 700;
+	letter-spacing: .04em; text-transform: uppercase;
+	color: var(--sp-muted);
+}
+.sp-payment-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: .5rem;
+}
+@media (min-width: 480px) { .sp-payment-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 720px) { .sp-payment-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1000px) { .sp-payment-grid { grid-template-columns: repeat(5, 1fr); } }
+
+.sp-payment-method {
+	appearance: none; background: #fff;
+	border: 1.5px solid var(--sp-border); border-radius: 8px;
+	padding: .85rem .5rem; cursor: pointer;
+	display: flex; flex-direction: column; align-items: center; justify-content: center;
+	font: inherit;
+	min-height: 3.5rem;
+	text-align: center;
+	transition: border-color .15s, background .15s, box-shadow .15s, transform .15s;
+}
+.sp-payment-method:hover {
+	border-color: var(--sp-soft);
+	box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 12px rgba(0,0,0,.05);
+}
+.sp-payment-method.is-active {
+	border-color: var(--sp-accent);
+	background: #fff;
+	box-shadow: 0 0 0 2px var(--sp-accent-soft), 0 4px 14px rgba(31,88,98,.12);
+}
+.sp-payment-method-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 1.6rem;
+}
+.sp-payment-method-icon svg {
+	max-width: 100%;
+	max-height: 100%;
+	height: 100%;
+	width: auto;
+}
+.sp-payment-method-label {
+	font-size: .8rem; font-weight: 600;
+	color: var(--sp-text);
+	line-height: 1.15;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+}
+
+/* === Vahvistussivu === */
+.sp-confirm-hero { text-align: center; padding: 3rem 0 2rem; max-width: 720px; margin: 0 auto; }
+.sp-success-icon {
+	width: 5rem; height: 5rem; border-radius: 50%;
+	background: var(--sp-accent); color: #fff;
+	display: inline-flex; align-items: center; justify-content: center;
+	font-size: 2.25rem; font-weight: 700; margin-bottom: 1.25rem;
+}
+.sp-confirm-email {
+	display: inline-block; margin-top: 1rem;
+	padding: .5rem 1rem;
+	background: var(--sp-accent-soft); color: var(--sp-accent-pill-ink);
+	border-radius: 999px;
+	font-size: .9rem; font-weight: 600;
+}
+.sp-next-steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+.sp-next-step {
+	display: grid; grid-template-columns: 2rem 1fr; gap: 1rem; align-items: start;
+}
+.sp-next-step h3 { margin: 0 0 .25rem; font-size: 1rem; font-weight: 700; }
+.sp-next-step p { margin: 0; color: var(--sp-muted); font-size: .9375rem; line-height: 1.5; }
+.sp-contact-card {
+	background: #fff; border: 1px solid var(--sp-border);
+	border-radius: 12px; padding: 1.25rem 1.5rem;
+	margin-bottom: 3rem;
+}
+.sp-contact-card h3 { margin: 0 0 .5rem; font-size: 1rem; font-weight: 700; }
+.sp-contact-card p { margin: 0; color: var(--sp-muted); font-size: .9rem; }
+.sp-contact-card a { color: var(--sp-accent); text-decoration: none; font-weight: 600; }
+.sp-contact-card a:hover { text-decoration: underline; }
+
+.sp-actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 4rem; }
+.sp-btn {
+	display: inline-flex; align-items: center; justify-content: center;
+	text-decoration: none;
+	padding: .85rem 1.25rem; border-radius: 10px;
+	font-weight: 600; font-size: .95rem; gap: .35rem;
+}
+.sp-btn-primary { background: var(--sp-accent); color: #fff; border: 1.5px solid var(--sp-accent); }
+.sp-btn-primary:hover { background: var(--sp-accent-dark); color: #fff; }
+.sp-btn-secondary { background: transparent; color: var(--sp-accent); border: 1.5px solid var(--sp-border); }
+.sp-btn-secondary:hover { border-color: var(--sp-accent); background: var(--sp-accent-soft); }
+
+/* === Discount-note alusta + opiskelija === */
+.sp-discount-note {
+	margin: 1.25rem 0 0; font-size: .875rem;
+	color: var(--sp-muted); text-align: center;
+}
+
+[data-when][hidden] { display: none !important; }

@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Claude Code session state (lokaali, ei jaettava)
+.claude/
+
+# wp-now local WordPress install
+.wp-now/
+wp-content/uploads/
+wp-content/upgrade/
+
+# Node (jos build-pipeline lisätään myöhemmin)
+node_modules/
+yarn-error.log
+npm-debug.log*
+package-lock.json
+yarn.lock
+
+# Composer
+vendor/
+composer.lock
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# Build artifacts
+dist/
+build/
+*.zip
