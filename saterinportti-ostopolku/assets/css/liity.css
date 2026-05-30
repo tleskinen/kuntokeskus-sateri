@@ -1543,7 +1543,7 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 	background-repeat: no-repeat;
 }
 .sp-home-row-image--portrait {
-	background-image: url("../brand/Images/Boona/img.png");
+	background-image: url("../brand/Images/Boona/from-women-to-women.png");
 }
 .sp-home-row-image--yoga {
 	background-image: url("../brand/Images/Boona/yoga-wellnes-studio.png");
@@ -1638,13 +1638,13 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 	background-position: center;
 }
 .sp-home-gallery-tile--a {
-	background-image: url("../brand/Images/Boona/Frame 25.png");
+	background-image: url("../brand/Images/Boona/small-1.png");
 }
 .sp-home-gallery-tile--b {
-	background-image: url("../brand/Images/Boona/Frame 20.png");
+	background-image: url("../brand/Images/Boona/small-2.png");
 }
 .sp-home-gallery-tile--c {
-	background-image: url("../brand/Images/Boona/Frame 26.png");
+	background-image: url("../brand/Images/Boona/small-3.png");
 }
 
 /* --- Iso lopputilakuva --- */
@@ -1659,7 +1659,7 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 /* --- Leveä gym-kuva intron jälkeen (Figmassa: kuva Naisilta naisille -rivin alla) --- */
 .sp-home-wide-image {
 	min-height: clamp(380px, 35vw, 645px);
-	background-image: url("../brand/Images/Boona/Frame 27.png");
+	background-image: url("../brand/Images/Boona/gym-wide.png");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
