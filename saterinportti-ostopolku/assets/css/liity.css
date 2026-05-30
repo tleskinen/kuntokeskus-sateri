@@ -1386,7 +1386,7 @@ body.brand-boona .sp-home-navbar { color: var(--sp-cta-bg); }
 	display: flex;
 	justify-content: center;
 	gap: 2.5rem;
-	font-size: 1.125em;
+	font-size: 1em;
 	font-weight: 600;
 	letter-spacing: .01em;
 }
@@ -1421,7 +1421,7 @@ body.brand-boona .sp-home-navbar { color: var(--sp-cta-bg); }
 	padding: 1rem 2rem;
 	border-radius: 320px;
 	font-weight: 600;
-	font-size: 1.125em;
+	font-size: 1em;
 	text-decoration: none;
 	border: 0;
 	cursor: pointer;
@@ -1443,7 +1443,7 @@ body.brand-boona .sp-home-navbar { color: var(--sp-cta-bg); }
 body.brand-boona .sp-home-btn--dark { color: var(--sp-cta-bg); }
 .sp-home-btn--lg {
 	padding: 1.1rem 2.5rem;
-	font-size: 1.125em;
+	font-size: 1em;
 }
 
 /* --- Marquee-rivi (info-banderolli) --- */
@@ -1451,7 +1451,7 @@ body.brand-boona .sp-home-btn--dark { color: var(--sp-cta-bg); }
 	padding: .65rem 1.5rem;
 	background: #fff;
 	text-align: center;
-	font-size: 1em;
+	font-size: 0.875em;
 	font-weight: 600;
 	letter-spacing: .02em;
 	color: var(--sp-text);
@@ -1495,7 +1495,7 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 	position: relative;
 }
 .sp-home-hero h1 {
-	font-size: clamp(2.25em, 5vw + 1em, 3.75em);
+	font-size: clamp(2.25em, 5vw + 0.875em, 3.75em);
 	font-weight: 600;
 	margin: 0 0 1rem;
 	letter-spacing: -.015em;
@@ -1503,7 +1503,7 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 	color: inherit;
 }
 .sp-home-hero p {
-	font-size: 1.125em;
+	font-size: 1em;
 	margin: 0 0 3rem;
 	opacity: .95;
 	line-height: 1.5;
@@ -1519,7 +1519,7 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 .sp-home-intro p {
 	max-width: 1220px;
 	margin: 0 auto;
-	font-size: clamp(1.25em, 1vw + 1em, 1.625em);
+	font-size: clamp(1.25em, 1vw + 0.875em, 1.625em);
 	line-height: 1.35;
 	font-weight: 700;
 	color: var(--sp-text);
@@ -1566,7 +1566,7 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 	background: #fff;
 }
 .sp-home-row-content h2 {
-	font-size: clamp(1.5em, 1.5vw + 1em, 1.625em);
+	font-size: clamp(1.5em, 1.5vw + 0.875em, 1.625em);
 	font-weight: 400;
 	margin: 0 0 1.5rem;
 	letter-spacing: -.005em;
@@ -1603,7 +1603,7 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 }
 
 .sp-home-feature h3 {
-	font-size: clamp(1.25em, 1vw + 1em, 1.625em);
+	font-size: clamp(1.25em, 1vw + 0.875em, 1.625em);
 	font-weight: 400;
 	margin: 0 0 1.25rem;
 	letter-spacing: -.005em;
@@ -1691,13 +1691,13 @@ body.brand-boona .sp-home-footer { color: var(--sp-cta-bg); }
 .sp-home-footer h4 {
 	font-weight: 700;
 	margin: 0 0 1.75rem;
-	font-size: 1.125em;
+	font-size: 1em;
 	color: inherit;
 }
 .sp-home-footer p {
 	margin: 0 0 1rem;
 	line-height: 1.55;
-	font-size: 1.125em;
+	font-size: 1em;
 	font-weight: 400;
 	color: inherit;
 	opacity: .92;
@@ -1709,7 +1709,7 @@ body.brand-boona .sp-home-footer { color: var(--sp-cta-bg); }
 	display: flex;
 	flex-direction: column;
 	gap: .65rem;
-	font-size: 1.125em;
+	font-size: 1em;
 	font-weight: 400;
 }
 .sp-home-footer ul li, .sp-home-footer ul a {
