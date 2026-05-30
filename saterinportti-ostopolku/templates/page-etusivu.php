@@ -37,6 +37,21 @@ $liity_url = ( $p = get_page_by_path( 'liity' ) ) ? get_permalink( $p ) : home_u
 				<a class="sp-home-btn sp-home-btn--cream" href="<?php echo esc_url( $liity_url ); ?>">Liity jäseneksi</a>
 				<a class="sp-home-nav-login" href="#login">Kirjaudu</a>
 			</div>
+			<button type="button" class="sp-home-nav-toggle" aria-expanded="false" aria-controls="sp-home-mobile-menu" aria-label="Avaa valikko">
+				<span class="sp-home-nav-toggle-bars" aria-hidden="true">
+					<span></span><span></span><span></span>
+				</span>
+			</button>
+		</div>
+		<div class="sp-home-mobile-menu" id="sp-home-mobile-menu" hidden>
+			<nav aria-label="Mobiili-päävalikko">
+				<a href="#kuntosali">Kuntosali</a>
+				<a href="#palvelut">Palvelut</a>
+				<a href="#meista">Meistä</a>
+				<a href="#asiakaspalvelu">Asiakaspalvelu</a>
+				<a href="#login" class="sp-home-mobile-menu-login">Kirjaudu</a>
+			</nav>
+			<a class="sp-home-btn sp-home-btn--cream sp-home-mobile-menu-cta" href="<?php echo esc_url( $liity_url ); ?>">Liity jäseneksi</a>
 		</div>
 	</header>
 
@@ -207,5 +222,38 @@ $liity_url = ( $p = get_page_by_path( 'liity' ) ) ? get_permalink( $p ) : home_u
 	</footer>
 
 </div>
+
+<script>
+/* Mobiilimenu-toggle — hamburger avaa/sulkee pudotusvalikon */
+(function () {
+	'use strict';
+	var btn = document.querySelector('.sp-home-nav-toggle');
+	var menu = document.getElementById('sp-home-mobile-menu');
+	if (!btn || !menu) return;
+
+	function setOpen(open) {
+		btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+		btn.setAttribute('aria-label', open ? 'Sulje valikko' : 'Avaa valikko');
+		menu.hidden = !open;
+	}
+
+	btn.addEventListener('click', function () {
+		setOpen(btn.getAttribute('aria-expanded') !== 'true');
+	});
+
+	// Sulje kun käyttäjä klikkaa linkkiä menusta
+	menu.querySelectorAll('a').forEach(function (a) {
+		a.addEventListener('click', function () { setOpen(false); });
+	});
+
+	// Escape-näppäin sulkee
+	document.addEventListener('keydown', function (e) {
+		if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+			setOpen(false);
+			btn.focus();
+		}
+	});
+})();
+</script>
 
 <?php get_footer();

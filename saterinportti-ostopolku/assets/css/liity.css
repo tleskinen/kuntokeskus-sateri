@@ -1412,9 +1412,82 @@ body.brand-boona .sp-home-navbar { color: var(--sp-cta-bg); }
 }
 .sp-home-nav-login:hover { opacity: .75; }
 
+/* Hamburger-painike — näkyy vain mobiilissa */
+.sp-home-nav-toggle {
+	display: none;
+	appearance: none;
+	background: transparent;
+	border: 0;
+	padding: .5rem;
+	cursor: pointer;
+	color: inherit;
+}
+.sp-home-nav-toggle-bars {
+	display: inline-flex;
+	flex-direction: column;
+	gap: .35rem;
+	width: 1.5rem;
+}
+.sp-home-nav-toggle-bars span {
+	display: block;
+	height: 2px;
+	background: currentColor;
+	border-radius: 2px;
+	transition: transform .2s, opacity .2s;
+}
+/* Hamburger → X kun valikko auki */
+.sp-home-nav-toggle[aria-expanded="true"] .sp-home-nav-toggle-bars span:nth-child(1) {
+	transform: translateY(.45rem) rotate(45deg);
+}
+.sp-home-nav-toggle[aria-expanded="true"] .sp-home-nav-toggle-bars span:nth-child(2) {
+	opacity: 0;
+}
+.sp-home-nav-toggle[aria-expanded="true"] .sp-home-nav-toggle-bars span:nth-child(3) {
+	transform: translateY(-.45rem) rotate(-45deg);
+}
+
+/* Mobiili-pudotusvalikko — slide-down navbarin alapuolelta */
+.sp-home-mobile-menu {
+	background: var(--sp-accent);
+	color: inherit;
+	border-top: 1px solid rgba(255,255,255,.1);
+}
+body.brand-boona .sp-home-mobile-menu { color: var(--sp-cta-bg); }
+.sp-home-mobile-menu[hidden] { display: none; }
+.sp-home-mobile-menu nav {
+	display: flex;
+	flex-direction: column;
+}
+.sp-home-mobile-menu nav a {
+	color: inherit;
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 1.125em;
+	padding: 1rem 1.25rem;
+	border-bottom: 1px solid rgba(255,255,255,.08);
+	transition: background .15s;
+}
+.sp-home-mobile-menu nav a:hover {
+	background: rgba(255,255,255,.06);
+}
+.sp-home-mobile-menu-login {
+	font-weight: 500 !important;
+	opacity: .85;
+}
+.sp-home-mobile-menu-cta {
+	margin: 1.25rem;
+	width: calc(100% - 2.5rem);
+	box-sizing: border-box;
+}
+
 @media (max-width: 880px) {
 	.sp-home-navbar-inner { gap: 1rem; justify-content: space-between; padding: 1rem 1.25rem; }
 	.sp-home-nav { display: none; }
+	.sp-home-nav-cta { display: none; }
+	.sp-home-nav-toggle { display: inline-flex; align-items: center; }
+}
+@media (min-width: 881px) {
+	.sp-home-mobile-menu { display: none !important; }
 }
 
 /* --- Geneerinen home-nappi (pyöreät pillit) --- */
