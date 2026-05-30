@@ -1346,6 +1346,12 @@ body.brand-boona .sp-home-footer * {
 	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+/* Brand-vaihtuva sisältö — eri tekstit eri brändeille.
+ * Templaatissa elementit merkitään data-brand-show="boona" tai
+ * data-brand-show="saterinportti", ja CSS piilottaa toiset. */
+body.brand-boona [data-brand-show="saterinportti"] { display: none !important; }
+body.brand-saterinportti [data-brand-show="boona"] { display: none !important; }
+
 /* --- Brand-navbar (tumma yläbanderolli) --- */
 .sp-home-navbar {
 	position: sticky;
@@ -1378,12 +1384,24 @@ body.brand-boona .sp-home-navbar { color: var(--sp-cta-bg); }
 	width: auto;
 	display: block;
 }
-/* Fallback wordmark jos logo ei ole linkki-img */
-.sp-home-logo:not(:has(img)) {
-	font-family: "Google Sans Flex", "Inter", sans-serif;
-	font-size: 2.25em;
-	font-weight: 700;
-	letter-spacing: -.06em;
+/* Säterinportti-brändin tekstipohjainen wordmark (ei vielä SVG-logoa) */
+.sp-home-logo-text {
+	font-size: 1.5rem;
+	font-weight: 800;
+	letter-spacing: -.015em;
+	color: inherit;
+	line-height: 1;
+}
+/* Säterinportti footer-wordmark (iso tekstipohja) */
+.sp-home-footer-wordmark-text {
+	display: block;
+	font-size: clamp(3rem, 10vw, 8rem);
+	font-weight: 800;
+	letter-spacing: -.04em;
+	line-height: 1;
+	text-align: center;
+	color: inherit;
+	opacity: .95;
 }
 .sp-home-nav {
 	flex: 1 1 auto;
