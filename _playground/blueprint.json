@@ -2,6 +2,7 @@
   "$schema": "https://playground.wordpress.net/blueprint-schema.json",
   "meta": {
     "title": "Säterinportti — Ostopolku-prototyyppi",
+    "author": "tleskinen",
     "description": "Uudistettu liittymisflow. Selaa sivuja /liity → /jatka → /maksu → /vahvistus. Demo pyörii selaimessasi — kaikki muutokset ovat lokaaleja eivätkä tallennu mihinkään."
   },
   "landingPage": "/liity",
