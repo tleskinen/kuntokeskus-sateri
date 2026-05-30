@@ -1608,6 +1608,18 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 	.sp-home-features-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
+/* Jokainen feature-kortti on flex-column → CTA-nappi pohjalle, otsikko + sisältö
+ * ylös. Grid pakottaa kaikki kortit samalle korkeudelle (stretch by default),
+ * joten napit ovat aina samassa pohjarivissä columnien välillä. */
+.sp-home-feature {
+	display: flex;
+	flex-direction: column;
+}
+.sp-home-feature .sp-home-btn {
+	margin-top: auto;
+	align-self: flex-start;
+}
+
 .sp-home-feature h3 {
 	font-size: clamp(1.25em, 1vw + 0.875em, 1.625em);
 	font-weight: 400;
