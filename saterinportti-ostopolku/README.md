@@ -3,7 +3,19 @@
 Mu-plugin Säterinportin ostopolun /liity-sivulle ja kassavirralle.
 4-sivun pohja: paketinvalinta → yhteystiedot → maksu → vahvistus.
 
-Versio: 0.2.0 · Tila: prototyyppi, valmis testattavaksi staging-ympäristössä.
+Versio: 0.6.0 · Tila: prototyyppi, valmis testattavaksi staging-ympäristössä.
+
+---
+
+## 🎮 Klikkaile prototyyppiä selaimessa
+
+**[Avaa interaktiivinen demo →](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/tleskinen/kuntokeskus-sateri/main/_playground/blueprint.json)**
+
+Demo pyörii kokonaan selaimessasi WordPress Playgroundin avulla — ei tarvita
+asennusta eikä rekisteröitymistä. Käynnistys kestää noin 10–15 sekuntia,
+minkä jälkeen voit selata /liity → /jatka → /maksu → /vahvistus -flow:ta
+oikealla WordPress-ympäristöllä. Kaikki muutokset ovat lokaaleja eivätkä
+tallennu mihinkään.
 
 ---
 
