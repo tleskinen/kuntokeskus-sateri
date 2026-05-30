@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Säterinportti Ostopolku
  * Description: Ostopolun uudistus — /liity-sivu, FitnessBooker-tuoteparametrin säilytys rekisteröinnin/kirjautumisen yli sekä pakettien hallinta. Tarkoitettu ajettavaksi mu-pluginina.
- * Version: 0.8.0
+ * Version: 0.9.0
  * Author: Säterinportti
  * Text Domain: saterinportti-ostopolku
  *
@@ -13,7 +13,7 @@ namespace Saterinportti\Ostopolku;
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SATERINPORTTI_OSTOPOLKU_VERSION', '0.8.0' );
+define( 'SATERINPORTTI_OSTOPOLKU_VERSION', '0.9.0' );
 define( 'SATERINPORTTI_OSTOPOLKU_FILE', __FILE__ );
 define( 'SATERINPORTTI_OSTOPOLKU_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SATERINPORTTI_OSTOPOLKU_URL', plugin_dir_url( __FILE__ ) );
