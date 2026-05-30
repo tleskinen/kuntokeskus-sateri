@@ -31,6 +31,9 @@ final class Plugin {
 	/** @var Admin_Settings */
 	public $admin_settings;
 
+	/** @var Brand_Toggle */
+	public $brand_toggle;
+
 	public static function instance(): Plugin {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
@@ -46,10 +49,12 @@ final class Plugin {
 		$this->page_template  = new Page_Template();
 		$this->assets         = new Assets();
 		$this->admin_settings = new Admin_Settings();
+		$this->brand_toggle   = new Brand_Toggle();
 
 		$this->fiboproduct->register();
 		$this->page_template->register();
 		$this->assets->register();
 		$this->admin_settings->register();
+		$this->brand_toggle->register();
 	}
 }

@@ -28,6 +28,7 @@ require_once SATERINPORTTI_OSTOPOLKU_DIR . 'includes/class-page-template.php';
 require_once SATERINPORTTI_OSTOPOLKU_DIR . 'includes/class-assets.php';
 require_once SATERINPORTTI_OSTOPOLKU_DIR . 'includes/class-admin-settings.php';
 require_once SATERINPORTTI_OSTOPOLKU_DIR . 'includes/class-payment-icons.php';
+require_once SATERINPORTTI_OSTOPOLKU_DIR . 'includes/class-brand-toggle.php';
 
 add_action( 'plugins_loaded', static function () {
 	Plugin::instance()->boot();

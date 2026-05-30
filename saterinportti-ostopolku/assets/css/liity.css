@@ -27,6 +27,28 @@
 	--sp-error-soft: #fcebe8;
 	--sp-shadow: 0 1px 2px rgba(0,0,0,.03), 0 8px 24px rgba(0,0,0,.05);
 	--sp-shadow-strong: 0 2px 4px rgba(0,0,0,.04), 0 14px 36px rgba(0,0,0,.1);
+
+	/* CTA-napit erotettu accent-väristä, jotta brändit voivat määritellä
+	 * eri suhteen primary-värin ja CTA-täytteen välillä (esim. Bööna käyttää
+	 * krermaa CTA:lle ja auberginea ylösperiväriksi). */
+	--sp-cta-bg: var(--sp-accent);
+	--sp-cta-text: #fff;
+	--sp-cta-bg-hover: var(--sp-accent-dark);
+	--sp-cta-text-hover: #fff;
+}
+
+/* Bööna-brändi — aktivoituu kun body saa luokan .brand-boona */
+body.brand-boona {
+	--sp-accent: #4d3645;
+	--sp-accent-dark: #2a1d27;
+	--sp-accent-soft: #f5edf0;
+	--sp-accent-pill-bg: #e7d6dd;
+	--sp-accent-pill-ink: #2a1d27;
+	--sp-card-soft: #faf6ec;
+	--sp-cta-bg: #f4efcd;
+	--sp-cta-text: #4d3645;
+	--sp-cta-bg-hover: #e8e0b3;
+	--sp-cta-text-hover: #2a1d27;
 }
 
 /* === Yhteinen kontti === */
@@ -191,13 +213,14 @@
 }
 .sp-cta {
 	display: inline-flex; align-items: center; justify-content: center;
-	background: var(--sp-accent); color: #fff;
+	background: var(--sp-cta-bg); color: var(--sp-cta-text);
 	text-decoration: none;
 	padding: 1rem 2rem; border-radius: 10px;
 	font-weight: 700; font-size: 1rem; gap: .5rem;
 	border: 0; cursor: pointer;
+	transition: background .15s, color .15s;
 }
-.sp-cta:hover { background: var(--sp-accent-dark); color: #fff; }
+.sp-cta:hover { background: var(--sp-cta-bg-hover); color: var(--sp-cta-text-hover); }
 
 /* CTA:n alle "trust-strip" — yhtenäinen sävy ja hierarkia.
  * Rivi 1: maksuvaihtoehdot oikeilla logoilla (visuaalinen luottamus)
@@ -925,14 +948,15 @@
 .sp-continue-btn {
 	display: flex; align-items: center; justify-content: space-between;
 	width: 100%;
-	background: var(--sp-accent); color: #fff;
+	background: var(--sp-cta-bg); color: var(--sp-cta-text);
 	text-decoration: none;
 	padding: 1rem 1.5rem; border-radius: 12px;
 	font-weight: 700; font-size: 1rem;
 	font-family: inherit;
 	border: 0; cursor: pointer; gap: 1rem;
+	transition: background .15s, color .15s;
 }
-.sp-continue-btn:hover { background: var(--sp-accent-dark); color: #fff; }
+.sp-continue-btn:hover { background: var(--sp-cta-bg-hover); color: var(--sp-cta-text-hover); }
 
 /* Form-rakenne /jatka-sivulla — sama flex-column gap-tila kuin layout-main:lla */
 #sp-jatka-form {
@@ -1047,7 +1071,7 @@
 
 .sp-pay-btn {
 	display: flex; align-items: center; justify-content: center;
-	background: var(--sp-accent); color: #fff;
+	background: var(--sp-cta-bg); color: var(--sp-cta-text);
 	text-decoration: none;
 	padding: 1.1rem 1rem; border-radius: 12px;
 	font-weight: 700; font-size: 1.0625rem;
@@ -1056,8 +1080,9 @@
 	width: 100%;
 	box-sizing: border-box;
 	margin-top: .65rem;
+	transition: background .15s, color .15s;
 }
-.sp-pay-btn:hover { background: var(--sp-accent-dark); color: #fff; }
+.sp-pay-btn:hover { background: var(--sp-cta-bg-hover); color: var(--sp-cta-text-hover); }
 
 .sp-trust-line {
 	display: flex; flex-direction: column; gap: .35rem;
@@ -1240,3 +1265,57 @@
 }
 
 [data-when][hidden] { display: none !important; }
+
+/* === Brand toggle (DEMO/PROTOTYPE) ===
+ * Liukuva widget alaoikealla: vaihtaa nopeasti Säterinportin ja Böönan
+ * brändin välillä. Tarkoitettu vain prototyyppi-vaiheen testaamiseen.
+ * Tuotantoon tämä piilotetaan filtterillä saterinportti_ostopolku_show_brand_toggle. */
+.sp-brand-toggle {
+	position: fixed;
+	bottom: 1rem;
+	right: 1rem;
+	z-index: 9999;
+	background: #fff;
+	border: 1.5px solid var(--sp-border);
+	border-radius: 999px;
+	padding: .25rem;
+	display: inline-flex;
+	gap: .15rem;
+	box-shadow: 0 4px 14px rgba(0,0,0,.12), 0 1px 3px rgba(0,0,0,.06);
+	font-size: .8125rem;
+	font-family: inherit;
+}
+.sp-brand-toggle::before {
+	content: "Brand";
+	display: inline-flex;
+	align-items: center;
+	padding: 0 .65rem 0 .85rem;
+	font-size: .7rem;
+	font-weight: 700;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+	color: var(--sp-soft);
+}
+.sp-brand-toggle button {
+	appearance: none;
+	background: transparent;
+	border: 0;
+	padding: .4rem .85rem;
+	border-radius: 999px;
+	cursor: pointer;
+	font: inherit;
+	font-weight: 600;
+	color: var(--sp-muted);
+	transition: background .15s, color .15s;
+}
+.sp-brand-toggle button:hover {
+	color: var(--sp-text);
+}
+.sp-brand-toggle button[aria-pressed="true"] {
+	background: var(--sp-accent);
+	color: #fff;
+}
+body.brand-boona .sp-brand-toggle button[aria-pressed="true"] {
+	background: var(--sp-accent);
+	color: #f4efcd;
+}

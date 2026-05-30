@@ -27,7 +27,17 @@ final class Page_Template {
 	 * @return array<string, array{template: string, file: string, title: string}>
 	 */
 	public static function pages(): array {
-		return [
+		$pages = [
+			// DEMO / PROTOTYPE — etusivu kuuluu Säterinportin Sage-teemaan tuotannossa.
+			// Tämä sivu on prototypoinnin ja Playground-demon tueksi. Tuotannossa
+			// suositellaan poistettavaksi joko WP-administa TAI teema-puolen filtterillä:
+			//   add_filter('saterinportti_ostopolku_pages', function($p){ unset($p['etusivu']); return $p; });
+			'etusivu' => [
+				'template' => 'saterinportti-ostopolku/page-etusivu.php',
+				'file'     => 'page-etusivu.php',
+				'title'    => 'Etusivu',
+				'demo'     => true,
+			],
 			'liity' => [
 				'template' => 'saterinportti-ostopolku/page-liity.php',
 				'file'     => 'page-liity.php',
@@ -49,6 +59,12 @@ final class Page_Template {
 				'title'    => 'Tilaus vahvistettu',
 			],
 		];
+
+		/**
+		 * Sivulistan filtteri — anna teemalle (tai muulle pluginille) mahdollisuus
+		 * poistaa demo-sivut tuotannosta.
+		 */
+		return apply_filters( 'saterinportti_ostopolku_pages', $pages );
 	}
 
 	public function register(): void {
