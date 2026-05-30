@@ -77,6 +77,9 @@ $liity_url = ( $p = get_page_by_path( 'liity' ) ) ? get_permalink( $p ) : home_u
 		</div>
 	</section>
 
+	<!-- Leveä gym-kuva (Figmassa: koko leveys, ~645px korkea) -->
+	<div class="sp-home-wide-image" aria-hidden="true"></div>
+
 	<!-- 3 kolumnia: aloitus / osoite / sali -->
 	<section class="sp-home-features" id="palvelut">
 		<div class="sp-home-features-grid">
