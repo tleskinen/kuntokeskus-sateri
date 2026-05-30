@@ -1,0 +1,38 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "meta": {
+    "title": "Säterinportti — Ostopolku-prototyyppi",
+    "description": "Uudistettu liittymisflow. Selaa sivuja /liity → /jatka → /maksu → /vahvistus. Demo pyörii selaimessasi — kaikki muutokset ovat lokaaleja eivätkä tallennu mihinkään."
+  },
+  "landingPage": "/liity",
+  "preferredVersions": {
+    "php": "8.2",
+    "wp": "latest"
+  },
+  "phpExtensionBundles": ["kitchen-sink"],
+  "features": {
+    "networking": true
+  },
+  "login": true,
+  "steps": [
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "url",
+        "url": "https://github.com/tleskinen/kuntokeskus-sateri/releases/latest/download/saterinportti-ostopolku.zip"
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php require_once '/wordpress/wp-load.php'; \\Saterinportti\\Ostopolku\\Page_Template::create_pages();"
+    },
+    {
+      "step": "setSiteOptions",
+      "options": {
+        "blogname": "Kuntokeskus Säterinportti — Demo",
+        "blogdescription": "Ostopolun prototyyppi",
+        "permalink_structure": "/%postname%/"
+      }
+    }
+  ]
+}

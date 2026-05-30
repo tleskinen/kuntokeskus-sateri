@@ -1,0 +1,45 @@
+name: Release plugin ZIP
+
+# Triggeröityy:
+#  - kun pushataan tagi v* (esim. v0.6.1)
+#  - manuaalisesti workflow_dispatch (Actions-välilehden "Run workflow" -nappi)
+#  - kun release julkaistaan käsin GitHubissa
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tagi jolle ZIP rakennetaan (esim. v0.6.0)'
+        required: true
+        default: 'v0.6.0'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+
+      - name: Build plugin ZIP
+        run: |
+          # Zip vain plugin-kansio, jotta WP-Playground voi asentaa sen suoraan.
+          # Sisältö on muotoa saterinportti-ostopolku/<files>
+          cd "$GITHUB_WORKSPACE"
+          zip -r saterinportti-ostopolku.zip saterinportti-ostopolku/ \
+            -x "saterinportti-ostopolku/.DS_Store" \
+            -x "saterinportti-ostopolku/**/.DS_Store"
+          ls -la saterinportti-ostopolku.zip
+
+      - name: Upload to release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+          files: saterinportti-ostopolku.zip
+          generate_release_notes: true
+          fail_on_unmatched_files: true
