@@ -1725,8 +1725,8 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 }
 .sp-home-feature p,
 .sp-home-feature ol {
-	font-size: 0.875em;
-	line-height: 1.5;
+	font-size: 1em;
+	line-height: 1.55;
 	margin: 0 0 1.75rem;
 	color: var(--sp-text);
 }
