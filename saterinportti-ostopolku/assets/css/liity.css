@@ -1697,12 +1697,29 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: 1fr;
-	gap: 2rem;
+	gap: 3rem;
 }
 @media (min-width: 780px) {
 	.sp-home-features-grid {
 		grid-template-columns: repeat(3, 1fr);
 		gap: clamp(1.5rem, 2.5vw, 2.5rem);
+	}
+}
+
+/* Mobiili: ohut jakajaviiva korttien välissä, ei viimeisen jälkeen.
+ * Helpottaa hahmottamaan mikä nappi kuuluu mihinkin kuvaan. */
+.sp-home-feature {
+	padding-bottom: 2rem;
+	border-bottom: 1px solid var(--sp-border);
+}
+.sp-home-feature:last-child {
+	padding-bottom: 0;
+	border-bottom: 0;
+}
+@media (min-width: 780px) {
+	.sp-home-feature {
+		padding-bottom: 0;
+		border-bottom: 0;
 	}
 }
 
