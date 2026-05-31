@@ -34,6 +34,9 @@ final class Plugin {
 	/** @var Brand_Toggle */
 	public $brand_toggle;
 
+	/** @var Proto_Nav */
+	public $proto_nav;
+
 	public static function instance(): Plugin {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
@@ -50,11 +53,13 @@ final class Plugin {
 		$this->assets         = new Assets();
 		$this->admin_settings = new Admin_Settings();
 		$this->brand_toggle   = new Brand_Toggle();
+		$this->proto_nav      = new Proto_Nav();
 
 		$this->fiboproduct->register();
 		$this->page_template->register();
 		$this->assets->register();
 		$this->admin_settings->register();
 		$this->brand_toggle->register();
+		$this->proto_nav->register();
 	}
 }
