@@ -1706,15 +1706,23 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 	}
 }
 
-/* Neliökuva jokaisen kortin yläosaan */
+/* Neliökuva — mobiilissa 130px vasen-block, desktopilla täysleveys ylhäällä */
 .sp-home-feature-image {
 	aspect-ratio: 1 / 1;
-	width: 100%;
+	flex: 0 0 130px;
+	width: 130px;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	margin: 0 0 1.5rem;
+	margin: 0;
 	border-radius: 4px;
+}
+@media (min-width: 780px) {
+	.sp-home-feature-image {
+		flex: 0 0 auto;
+		width: 100%;
+		margin: 0 0 1.5rem;
+	}
 }
 .sp-home-feature-image--1 {
 	background-image: url("../brand/Images/Boona/small-1.png");
@@ -1726,16 +1734,32 @@ body.brand-boona .sp-home-marquee--dark { color: var(--sp-cta-bg); }
 	background-image: url("../brand/Images/Boona/small-3.png");
 }
 
-/* Jokainen feature-kortti on flex-column → CTA-nappi pohjalle, otsikko + sisältö
- * ylös. Grid pakottaa kaikki kortit samalle korkeudelle (stretch by default),
- * joten napit ovat aina samassa pohjarivissä columnien välillä. */
+/* Feature-kortti on RESPONSIVE:
+ *  - Mobiili (<780px): side-by-side, kuva vasen 130px, sisältö oikealla
+ *  - Desktop: pinottu, kuva ylhäällä, sisältö pohjalla, nappi sticky-bottomissa
+ * Tämä tekee mobiilista paljon kompaktimman ilman että kuva-ratio muuttuu. */
 .sp-home-feature {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	align-items: flex-start;
+}
+.sp-home-feature-content {
+	flex: 1;
+	min-width: 0;
 	display: flex;
 	flex-direction: column;
 }
 .sp-home-feature .sp-home-btn {
 	margin-top: auto;
 	align-self: flex-start;
+}
+
+@media (min-width: 780px) {
+	.sp-home-feature {
+		flex-direction: column;
+		gap: 0;
+	}
 }
 
 .sp-home-feature h3 {

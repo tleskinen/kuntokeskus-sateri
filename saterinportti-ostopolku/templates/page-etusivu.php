@@ -123,37 +123,43 @@ $img_url   = SATERINPORTTI_OSTOPOLKU_URL . 'assets/brand/Images/Boona/';
 
 			<div class="sp-home-feature">
 				<div class="sp-home-feature-image sp-home-feature-image--1" aria-hidden="true"></div>
-				<h3>Aloita treenaaminen</h3>
-				<ol data-brand-show="boona">
-					<li>Osta jäsenyys verkosta</li>
-					<li>Saat PIN-koodin heti</li>
-					<li>Tule treenaamaan milloin tahansa</li>
-					<li>Nähdään Böönassa!</li>
-				</ol>
-				<ol data-brand-show="saterinportti">
-					<li>Osta jäsenyys verkosta</li>
-					<li>Saat PIN-koodin sähköpostiisi</li>
-					<li>Hae avainkortti aulapalvelusta</li>
-					<li>Treenaa 24/7 omaan tahtiin</li>
-				</ol>
-				<a class="sp-home-btn sp-home-btn--cream" href="<?php echo esc_url( $liity_url ); ?>">Liity jäseneksi</a>
+				<div class="sp-home-feature-content">
+					<h3>Aloita treenaaminen</h3>
+					<ol data-brand-show="boona">
+						<li>Osta jäsenyys verkosta</li>
+						<li>Saat PIN-koodin heti</li>
+						<li>Tule treenaamaan milloin tahansa</li>
+						<li>Nähdään Böönassa!</li>
+					</ol>
+					<ol data-brand-show="saterinportti">
+						<li>Osta jäsenyys verkosta</li>
+						<li>Saat PIN-koodin sähköpostiisi</li>
+						<li>Hae avainkortti aulapalvelusta</li>
+						<li>Treenaa 24/7 omaan tahtiin</li>
+					</ol>
+					<a class="sp-home-btn sp-home-btn--cream" href="<?php echo esc_url( $liity_url ); ?>">Liity jäseneksi</a>
+				</div>
 			</div>
 
 			<div class="sp-home-feature">
 				<div class="sp-home-feature-image sp-home-feature-image--2" aria-hidden="true"></div>
-				<h3>Osoite &amp; saapuminen</h3>
-				<p data-brand-show="boona">Sijaitsemme upeassa Jugend-kiinteistössä osoitteessa Kolmas linja 2, Helsinki. Täällä ihan Hakaniemen torin kupeessa.</p>
-				<p data-brand-show="saterinportti">Linnoitustie 6, 02600 Espoo. Pysäköinti omassa pihassamme — 2,5 h ilmaista. Bussipysäkki vieressä, ja Sello on viiden minuutin matkan päässä.</p>
-				<a class="sp-home-btn sp-home-btn--cream" href="#yhteystiedot">Yhteystiedot</a>
+				<div class="sp-home-feature-content">
+					<h3>Osoite &amp; saapuminen</h3>
+					<p data-brand-show="boona">Sijaitsemme upeassa Jugend-kiinteistössä osoitteessa Kolmas linja 2, Helsinki. Täällä ihan Hakaniemen torin kupeessa.</p>
+					<p data-brand-show="saterinportti">Linnoitustie 6, 02600 Espoo. Pysäköinti omassa pihassamme — 2,5 h ilmaista. Bussipysäkki vieressä, ja Sello on viiden minuutin matkan päässä.</p>
+					<a class="sp-home-btn sp-home-btn--cream" href="#yhteystiedot">Yhteystiedot</a>
+				</div>
 			</div>
 
 			<div class="sp-home-feature" id="kuntosali">
 				<div class="sp-home-feature-image sp-home-feature-image--3" aria-hidden="true"></div>
-				<h3 data-brand-show="boona">Naisten kuntosali</h3>
-				<h3 data-brand-show="saterinportti">Kaikki samalla kortilla</h3>
-				<p data-brand-show="boona">Böönasta löytyy 600 m² kuntosali, Hot-jooga &amp; wellness studio, kaunis pukuhuone, suihkut ja infrapunasauna.</p>
-				<p data-brand-show="saterinportti">Kuntosali, ryhmäliikunta, saunat (ke–su 16–21) ja Personal Training — kaikki yhdellä jäsenyydellä. Liikuntaedut käyvät: Smartum, Epassi ja Edenred.</p>
-				<a class="sp-home-btn sp-home-btn--cream" href="#tilat">Tutustu tiloihin</a>
+				<div class="sp-home-feature-content">
+					<h3 data-brand-show="boona">Naisten kuntosali</h3>
+					<h3 data-brand-show="saterinportti">Kaikki samalla kortilla</h3>
+					<p data-brand-show="boona">Böönasta löytyy 600 m² kuntosali, Hot-jooga &amp; wellness studio, kaunis pukuhuone, suihkut ja infrapunasauna.</p>
+					<p data-brand-show="saterinportti">Kuntosali, ryhmäliikunta, saunat (ke–su 16–21) ja Personal Training — kaikki yhdellä jäsenyydellä. Liikuntaedut käyvät: Smartum, Epassi ja Edenred.</p>
+					<a class="sp-home-btn sp-home-btn--cream" href="#tilat">Tutustu tiloihin</a>
+				</div>
 			</div>
 
 		</div>
