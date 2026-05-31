@@ -1365,7 +1365,7 @@ body.brand-boona .sp-home-navbar { color: var(--sp-cta-bg); }
 .sp-home-navbar-inner {
 	max-width: 1280px;
 	margin: 0 auto;
-	padding: 1.5rem 2rem;
+	padding: .9rem 2rem;
 	display: flex;
 	align-items: center;
 	gap: 2rem;
@@ -1422,7 +1422,7 @@ body.brand-boona .sp-home-navbar { color: var(--sp-cta-bg); }
 .sp-home-nav-cta {
 	display: flex;
 	align-items: center;
-	gap: 1.5rem;
+	gap: 1.25rem;
 }
 .sp-home-nav-login {
 	color: inherit;
@@ -1514,7 +1514,7 @@ body.brand-boona .sp-home-mobile-menu { color: var(--sp-cta-bg); }
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	padding: 1rem 2rem;
+	padding: .7rem 1.4rem;
 	border-radius: 320px;
 	font-weight: 600;
 	font-size: 1em;
