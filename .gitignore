@@ -33,6 +33,7 @@ composer.lock
 .env
 .env.local
 .env.*.local
+.env.image.local
 
 # Logs
 *.log
