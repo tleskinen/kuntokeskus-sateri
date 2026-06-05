@@ -1910,30 +1910,21 @@ body.brand-boona .sp-home-footer { color: var(--sp-cta-bg); }
 	margin: 0 auto;
 }
 
-/* === Animoitu "bööna" variable-font morphing demo ===
- * Käyttää Google Sans Flexin wght- ja wdth-akseleita. Jokainen kirjain saa
- * oman animation-delayn → aaltomainen efekti pyyhkii vasemmalta oikealle. */
+/* === Animoitu "bööna" variable-font morphing — Google Sans Flex wght/wdth ===
+ * Käytössä navbarissa logona, jossa animaatio käynnistyy vasta hoveroidessa.
+ * Aaltomainen morph pyyhkii vasemmalta oikealle (staggered animation-delay). */
 .sp-boona-animated {
 	display: inline-flex;
 	font-family: "Google Sans Flex", "Inter", sans-serif;
-	font-size: clamp(4rem, 16vw, 14rem);
 	line-height: .85;
 	color: inherit;
-	margin: 0 auto;
-	justify-content: center;
 	gap: .02em;
 }
 .sp-boona-animated > span {
 	display: inline-block;
 	font-variation-settings: "wght" 700, "wdth" 100;
-	animation: sp-boona-morph 4s ease-in-out infinite;
 	will-change: font-variation-settings;
 }
-.sp-boona-animated > span:nth-child(1) { animation-delay: 0s; }
-.sp-boona-animated > span:nth-child(2) { animation-delay: 0.25s; }
-.sp-boona-animated > span:nth-child(3) { animation-delay: 0.5s; }
-.sp-boona-animated > span:nth-child(4) { animation-delay: 0.75s; }
-.sp-boona-animated > span:nth-child(5) { animation-delay: 1s; }
 
 @keyframes sp-boona-morph {
 	0%   { font-variation-settings: "wght" 300, "wdth" 100; }
@@ -1944,11 +1935,32 @@ body.brand-boona .sp-home-footer { color: var(--sp-cta-bg); }
 	100% { font-variation-settings: "wght" 300, "wdth" 100; }
 }
 
+/* Navbar-versio — pieni koko, animaatio vain hoveroidessa.
+ * letter-spacing -0.05em mukailee SVG-logon tiiviyttä. */
+.sp-boona-animated--logo {
+	font-size: 1.85rem;
+	font-weight: 700;
+	letter-spacing: -.05em;
+}
+.sp-home-logo:hover .sp-boona-animated--logo > span,
+.sp-home-logo:focus-visible .sp-boona-animated--logo > span {
+	animation: sp-boona-morph 4s ease-in-out infinite;
+}
+.sp-home-logo:hover .sp-boona-animated--logo > span:nth-child(1),
+.sp-home-logo:focus-visible .sp-boona-animated--logo > span:nth-child(1) { animation-delay: 0s; }
+.sp-home-logo:hover .sp-boona-animated--logo > span:nth-child(2),
+.sp-home-logo:focus-visible .sp-boona-animated--logo > span:nth-child(2) { animation-delay: 0.2s; }
+.sp-home-logo:hover .sp-boona-animated--logo > span:nth-child(3),
+.sp-home-logo:focus-visible .sp-boona-animated--logo > span:nth-child(3) { animation-delay: 0.4s; }
+.sp-home-logo:hover .sp-boona-animated--logo > span:nth-child(4),
+.sp-home-logo:focus-visible .sp-boona-animated--logo > span:nth-child(4) { animation-delay: 0.6s; }
+.sp-home-logo:hover .sp-boona-animated--logo > span:nth-child(5),
+.sp-home-logo:focus-visible .sp-boona-animated--logo > span:nth-child(5) { animation-delay: 0.8s; }
+
 /* Accessibility — älä animoi jos käyttäjä on pyytänyt vähemmän liikettä */
 @media (prefers-reduced-motion: reduce) {
 	.sp-boona-animated > span {
-		animation: none;
-		font-variation-settings: "wght" 700, "wdth" 100;
+		animation: none !important;
 	}
 }
 
