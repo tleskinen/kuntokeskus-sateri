@@ -29,9 +29,7 @@ $img_url   = SATERINPORTTI_OSTOPOLKU_URL . 'assets/brand/Images/Boona/';
 	<header class="sp-home-navbar" role="banner">
 		<div class="sp-home-navbar-inner">
 			<a class="sp-home-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Etusivu">
-				<span data-brand-show="boona" class="sp-boona-animated sp-boona-animated--logo" aria-label="bööna">
-					<span aria-hidden="true">b</span><span aria-hidden="true">ö</span><span aria-hidden="true">ö</span><span aria-hidden="true">n</span><span aria-hidden="true">a</span>
-				</span>
+				<img data-brand-show="boona" src="<?php echo esc_url( SATERINPORTTI_OSTOPOLKU_URL . 'assets/brand/Boona/' ); ?>bööna-logo.svg" alt="bööna" loading="eager">
 				<span data-brand-show="saterinportti" class="sp-home-logo-text">Säterinportti</span>
 			</a>
 			<nav class="sp-home-nav" aria-label="Päävalikko">
