@@ -306,9 +306,11 @@ $img_url   = SATERINPORTTI_OSTOPOLKU_URL . 'assets/brand/Images/Boona/';
 				</div>
 
 			</div>
-			<div class="sp-home-footer-wordmark" aria-hidden="true">
-				<img data-brand-show="boona" src="<?php echo esc_url( SATERINPORTTI_OSTOPOLKU_URL . 'assets/brand/Boona/' ); ?>bööna-logo.svg" alt="">
-				<span data-brand-show="saterinportti" class="sp-home-footer-wordmark-text">Säterinportti</span>
+			<div class="sp-home-footer-wordmark">
+				<span data-brand-show="boona" class="sp-boona-animated" aria-label="bööna">
+					<span aria-hidden="true">b</span><span aria-hidden="true">ö</span><span aria-hidden="true">ö</span><span aria-hidden="true">n</span><span aria-hidden="true">a</span>
+				</span>
+				<span data-brand-show="saterinportti" class="sp-home-footer-wordmark-text" aria-hidden="true">Säterinportti</span>
 			</div>
 		</div>
 	</footer>

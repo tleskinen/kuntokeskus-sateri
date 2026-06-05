@@ -1910,6 +1910,48 @@ body.brand-boona .sp-home-footer { color: var(--sp-cta-bg); }
 	margin: 0 auto;
 }
 
+/* === Animoitu "bööna" variable-font morphing demo ===
+ * Käyttää Google Sans Flexin wght- ja wdth-akseleita. Jokainen kirjain saa
+ * oman animation-delayn → aaltomainen efekti pyyhkii vasemmalta oikealle. */
+.sp-boona-animated {
+	display: inline-flex;
+	font-family: "Google Sans Flex", "Inter", sans-serif;
+	font-size: clamp(4rem, 16vw, 14rem);
+	line-height: .85;
+	color: inherit;
+	margin: 0 auto;
+	justify-content: center;
+	gap: .02em;
+}
+.sp-boona-animated > span {
+	display: inline-block;
+	font-variation-settings: "wght" 700, "wdth" 100;
+	animation: sp-boona-morph 4s ease-in-out infinite;
+	will-change: font-variation-settings;
+}
+.sp-boona-animated > span:nth-child(1) { animation-delay: 0s; }
+.sp-boona-animated > span:nth-child(2) { animation-delay: 0.25s; }
+.sp-boona-animated > span:nth-child(3) { animation-delay: 0.5s; }
+.sp-boona-animated > span:nth-child(4) { animation-delay: 0.75s; }
+.sp-boona-animated > span:nth-child(5) { animation-delay: 1s; }
+
+@keyframes sp-boona-morph {
+	0%   { font-variation-settings: "wght" 300, "wdth" 100; }
+	20%  { font-variation-settings: "wght" 900, "wdth" 115; }
+	40%  { font-variation-settings: "wght" 500, "wdth" 125; }
+	60%  { font-variation-settings: "wght" 800, "wdth" 85;  }
+	80%  { font-variation-settings: "wght" 200, "wdth" 95;  }
+	100% { font-variation-settings: "wght" 300, "wdth" 100; }
+}
+
+/* Accessibility — älä animoi jos käyttäjä on pyytänyt vähemmän liikettä */
+@media (prefers-reduced-motion: reduce) {
+	.sp-boona-animated > span {
+		animation: none;
+		font-variation-settings: "wght" 700, "wdth" 100;
+	}
+}
+
 /* === Prototyyppi-navigaattori (DEMO/PROTOTYPE) ===
  * Liukuva pillipalkki alavasemmalla — asiakas voi hypätä mille tahansa
  * sivulle yhdellä klikillä. Tuotantoon piilotetaan filtterillä. */

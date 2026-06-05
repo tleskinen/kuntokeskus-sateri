@@ -32,7 +32,7 @@ final class Assets {
 		 */
 		wp_enqueue_style(
 			'saterinportti-ostopolku-fonts',
-			'https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@7..72,400..700&family=Inter:wght@400;700&display=swap',
+			'https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wdth,wght@7..72,75..125,100..900&family=Inter:wght@400;700&display=swap',
 			[],
 			null
 		);
